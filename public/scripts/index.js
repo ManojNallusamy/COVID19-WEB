@@ -32,6 +32,7 @@ function drawChart() {
         colors: [
             'blue','green','red'
         ],
+        // legend: 'top',
         backgroundColor: 'whitesmoke'
         //  'width':auto,
         //  'height':60%      

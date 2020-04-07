@@ -14,7 +14,6 @@ mongoose.connect("mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net
 
 var statewise = require("./models/statewise");
 var dailydata = require("./models/dailydata");
-
 //load india data
 var loadstatewise = require("./seeds");
 var job = cron.job('0 20 * * *',()=>{

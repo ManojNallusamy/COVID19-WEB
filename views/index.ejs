@@ -1,4 +1,7 @@
 <%- include("partials/header") -%>
+<% statedata.sort((a,b)=>{ %>
+<%  return b["total"]-a["total"]; %>
+<% }) %>
 <div class="head">
 <div class="ui container" >
     <div class="ui centered inverted huge header">
