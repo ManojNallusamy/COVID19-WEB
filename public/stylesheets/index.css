@@ -1,0 +1,26 @@
+table{
+    max-width: 500px;
+}
+body{
+    color: white;
+    background-color: whitesmoke;
+}
+.container{
+    color: #133939;
+}
+/* .ui.cards>.card>.content{
+    background: rgba(255, 92, 51);
+} */
+/* .container>.header{
+    background-color: rgb(140, 140, 140);
+} */
+img{
+    filter: invert(100%);
+}
+.head{
+    height: ;
+    background-color: #133939;
+}
+.ui.grid{
+    margin-top: 0rem;
+}

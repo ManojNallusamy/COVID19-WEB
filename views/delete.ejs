@@ -1,0 +1,50 @@
+Live Demo
+<html>
+   <head>
+      <title>Google Charts Tutorial</title>
+      
+   </head>
+   <div id="json" hidden><%= dt %></div>
+   <body>
+      <div id = "container" style = "width: 1000px; height: 400px; margin: 0 auto">
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+            var dt = JSON.parse(document.querySelector("#json").textContent);
+            data.addColumn('string', 'Time');
+            data.addColumn('number', 'Active Cases');
+            rows=[];
+            dt.cases_time_series.forEach((day)=>{
+                if(day["date"].substring(0,2)=="15")
+                rows.push([day["date"].substring(0,2),Number(day["dailyconfirmed"])]);
+                else
+                rows.push(["",Number(day["dailyconfirmed"])]);
+            })
+            data.addRows(rows);
+            
+            // Set chart options
+            var options = {
+               chart: {
+                  title: 'Daily Confirmed Cases',
+                  subtitle: 'Source: mohf'
+               },   
+               hAxis: {
+                  title: 'Time',         
+               },
+               vAxis: {
+                  title: 'Cases',        
+               }, 
+               'width':1200,
+               'height':400      
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.charts.Line(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+   </body>
+</html>

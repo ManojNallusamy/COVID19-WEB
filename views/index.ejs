@@ -1,0 +1,131 @@
+<%- include("partials/header") -%>
+<div class="head">
+<div class="ui container" >
+    <div class="ui centered inverted huge header">
+        <img src="/images/headericon.png" alt="icon">
+        Live Covid19 Tracker
+    </div>
+</div>
+</div>
+<div class="ui container" >
+    <div class="ui stackable grid">
+        <div class="eight wide column">
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <h1>GLOBAL</h1>
+                    <div class="ui cards">
+                        <div class="card">
+                          <div class="content">
+                            <div class="header">Active Cases</div>
+                            <div class="meta"><%= ((statedata[0]["active"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
+                            <div class="description">
+                                <strong><span class="count"><%= statedata[0]["active"] %></span></strong>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="green card">
+                            <div class="content">
+                              <div class="header">Recovered</div>
+                              <div class="meta"><%= ((statedata[0]["recovered"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
+                              <div class="description">
+                                  <strong class="count"><%= statedata[0]["recovered"] %></strong>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="red card">
+                            <div class="content">
+                              <div class="header">Deaths</div>
+                              <div class="meta"><%= ((statedata[0]["deaths"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
+                              <div class="description">
+                                  <strong class="count"><%= statedata[0]["deaths"] %></strong>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="black card">
+                            <div class="content">
+                              <div class="header">Total Cases</div>
+                              <div class="description">
+                                  <strong class="count"><%= statedata[0]["total"] %></strong>
+                              </div>
+                            </div>
+                          </div>    
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <h1>INDIA</h1>
+                    <div class="ui cards">
+                        <div class="card">
+                          <div class="content">
+                            <div class="header">Active Cases</div>
+                            <div class="meta"><%= ((statedata[1]["active"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
+                            <div class="description">
+                                <strong class="count"><%= statedata[1]["active"] %></strong>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="green card">
+                            <div class="content">
+                              <div class="header">Recovered</div>
+                              <div class="meta"><%= ((statedata[1]["recovered"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
+                              <div class="description">
+                                  <strong class="count"><%= statedata[1]["recovered"] %></strong>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="red card">
+                            <div class="content">
+                              <div class="header">Deaths</div>
+                              <div class="meta"><%= ((statedata[1]["deaths"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
+                              <div class="description">
+                                  <strong class="count"><%= statedata[1]["deaths"] %></strong>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="black card">
+                            <div class="content">
+                              <div class="header">Total Cases</div>
+                              <div class="description">
+                                  <strong class="count"><%= statedata[1]["total"] %></strong>
+                              </div>
+                            </div>
+                          </div>    
+                    </div>
+                </div>
+            </div>
+            <div id = "chart" style = "width: auto; height: 400px; margin: 50px auto">
+            </div>
+        </div>
+        <div class="eight wide column">
+            <h4>INDIA STATEWISE</h4>
+            <table class="ui unstackable selectable celled table">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Active</th>
+                        <th>Recovered</th>
+                        <th>Deaths</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% statedata.forEach((state)=>{ %>
+                        <% if(state["name"]=="Global" || state["name"]=="Total" || state["total"]== 0) { %>
+                            <% return;} %>
+                        <tr>
+                            <td><%= state["name"] %></td>
+                            <td><%= state["active"] %></td>
+                            <td><%= state["recovered"] %></td>
+                            <td><%= state["deaths"] %></td>
+                            <td><%= state["total"] %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="json" hidden> <%= daily %></div>
+    <script src="/scripts/index.js"></script>
+</div>
+
+
+<%- include("partials/footer") -%>
