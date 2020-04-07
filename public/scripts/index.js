@@ -21,7 +21,8 @@ function drawChart() {
         chart: {
             title: '    Daily Growth - INDIA',
             subtitle: 'Source: MOHFW'
-        },   
+        },
+           
         hAxis: {
             title: 'Time',         
         },
@@ -31,8 +32,9 @@ function drawChart() {
         colors: [
             'blue','green','red'
         ],
-        'width':550,
-        'height':300      
+        backgroundColor: 'whitesmoke'
+        //  'width':auto,
+        //  'height':60%      
     };
 
     // Instantiate and draw the chart.
