@@ -1,3 +1,14 @@
+$(window).on('load',function() {
+    $("body").removeClass("preload");
+  });
+$(document).ready(function(){
+    $('table').addClass('tablesorter');
+    $('table').tablesorter({
+        // theme: 'blue',
+        headerTemplate: '{content}{icon}',
+        widgets: ['zebra','columns']
+    });
+  });
 function drawChart() {
     // Define the chart to be drawn.
     var data = new google.visualization.DataTable();
