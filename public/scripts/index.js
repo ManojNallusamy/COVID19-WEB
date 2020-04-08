@@ -9,7 +9,7 @@ $(document).ready(function(){
         widgets: ['zebra','columns']
     });
   });
-function drawChart() {
+function drawChart(chrtTitle,chrtName,colValues) {
     // Define the chart to be drawn.
     var data = new google.visualization.DataTable();
     var daily = JSON.parse(document.querySelector("#json").textContent);
@@ -23,14 +23,14 @@ function drawChart() {
         // if(day["date"].substring(0,2)=="15")
         // rows.push([day["date"].substring(0,2),Number(day["dailyconfirmed"])]);
         // else
-        rows.push(["",day["confirmed"],day["recovered"],day["deaths"]]);
+        rows.push(["",day[colValues[0]],day[colValues[1]],day[colValues[2]]]);
     })
     data.addRows(rows);
     
     // Set chart options
     var options = {
         chart: {
-            title: '    Daily Growth - INDIA',
+            title: chrtTitle,
             subtitle: 'Source: MOHFW'
         },
            
@@ -40,7 +40,7 @@ function drawChart() {
         vAxis: {
             title: 'Cases',        
         }, 
-        colors: [
+        colors: [   
             'rgb(0, 51, 102)','green','red'
         ],
         // legend: 'top',
@@ -50,7 +50,8 @@ function drawChart() {
     };
 
     // Instantiate and draw the chart.
-    var chart = new google.charts.Line(document.getElementById('chart'));
+    var chart = new google.charts.Line(document.getElementById(chrtName));
     chart.draw(data, options);
     }
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(()=>{ drawChart('TOTAL CASES - INDIA','chart1',['confirmed','recovered','deaths'])});
+    google.charts.setOnLoadCallback(()=>{ drawChart('DAILY CASES - INDIA','chart2',['dailyconfirmed','dailyrecovered','dailydeaths'])});

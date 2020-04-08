@@ -99,3 +99,9 @@ img{
     top: 0;
     z-index: 2;
 }
+#time{
+    opacity: 0.5;
+}
+.ui.table{
+    margin-bottom: 4rem;
+}
