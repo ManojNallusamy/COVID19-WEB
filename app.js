@@ -16,10 +16,12 @@ var statewise = require("./models/statewise");
 var dailydata = require("./models/dailydata");
 //load india data
 var loadstatewise = require("./seeds");
-var updatetime = new Date();
+var updatetime = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+updatetime = new Date(updatetime);
 updatetime = updatetime.toLocaleTimeString();
 var job = cron.job('0 0 */2 * * *',()=>{
-    updatetime =  new Date();
+    updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+    updatetime = new Date(updatetime);
     updatetime = updatetime.toLocaleTimeString();
     loadstatewise();
 },null,true,'Asia/Calcutta');
