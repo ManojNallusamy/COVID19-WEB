@@ -41,7 +41,7 @@ function drawChart() {
             title: 'Cases',        
         }, 
         colors: [
-            'blue','green','red'
+            'rgb(0, 51, 102)','green','red'
         ],
         // legend: 'top',
         backgroundColor: 'whitesmoke'
