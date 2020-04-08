@@ -32,7 +32,7 @@
                               <div class="header" style="color: rgb(0, 102, 0);">Recovered</div>
                               <div class="meta"><%= ((statedata[0]["recovered"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[0]["recovered"] %></strong>
+                                  <strong class="count"><%= statedata[0]["recovered"] %></strong> (+<%= statedata[0]["dailyrecovered"] %>)
                               </div>
                             </div>
                           </div>
@@ -41,7 +41,7 @@
                               <div class="header" style="color: rgb(204, 51, 0);">Deaths</div>
                               <div class="meta"><%= ((statedata[0]["deaths"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[0]["deaths"] %></strong>
+                                  <strong class="count"><%= statedata[0]["deaths"] %></strong> (+<%= statedata[0]["dailydeaths"] %>)
                               </div>
                             </div>
                           </div>
@@ -49,7 +49,7 @@
                             <div class="content">
                               <div class="header">Total Cases</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[0]["total"] %></strong>
+                                  <strong class="count"><%= statedata[0]["total"] %></strong> (+<%= statedata[0]["dailytotal"] %>)
                               </div>
                             </div>
                           </div>    
@@ -72,7 +72,7 @@
                               <div class="header" style="color: rgb(0, 102, 0);">Recovered</div>
                               <div class="meta"><%= ((statedata[1]["recovered"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[1]["recovered"] %></strong>
+                                  <strong class="count"><%= statedata[1]["recovered"] %></strong> (+<%= statedata[1]["dailyrecovered"] %>)
                               </div>
                             </div>
                           </div>
@@ -81,7 +81,7 @@
                               <div class="header" style="color: rgb(204, 51, 0);">Deaths</div>
                               <div class="meta"><%= ((statedata[1]["deaths"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[1]["deaths"] %></strong>
+                                  <strong class="count"><%= statedata[1]["deaths"] %></strong> (+<%= statedata[1]["dailydeaths"] %>)
                               </div>
                             </div>
                           </div>
@@ -89,7 +89,7 @@
                             <div class="content">
                               <div class="header">Total Cases</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[1]["total"] %></strong>
+                                  <strong class="count"><%= statedata[1]["total"] %></strong> (+<%= statedata[1]["dailytotal"] %>)
                               </div>
                             </div>
                           </div>    

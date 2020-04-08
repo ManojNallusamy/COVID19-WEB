@@ -27,6 +27,9 @@ function loadData()
                         console.log("DB1 Cleared.");
                         statewise.create(
                             {
+                                dailyrecovered: body["totalRecoveredDelta"],
+                                dailydeaths:body["totalDeathsDelta"],
+                                dailytotal: body["totalConfirmedDelta"],
                                 name: "Global",
                                 active: body["totalConfirmed"]-body["totalRecovered"]-body["totalDeaths"],
                                 recovered: body["totalRecovered"],
@@ -36,6 +39,9 @@ function loadData()
                         data["statewise"].forEach((state)=>{
                             statewise.create(
                                 {
+                                    dailyrecovered: state["deltarecovered"],
+                                    dailydeaths:state["deltadeaths"],
+                                    dailytotal: state["deltaconfirmed"],
                                     name: state["state"],
                                     active: state["active"],
                                     recovered: state["recovered"],

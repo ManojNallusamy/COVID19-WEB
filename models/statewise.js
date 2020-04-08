@@ -1,6 +1,9 @@
 var mongoose= require("mongoose");
 
 var statewiseShcema = new mongoose.Schema({
+    dailyrecovered: Number,
+    dailydeaths: Number,
+    dailytotal: Number,
     name: String,
     active: Number,
     recovered: Number,
