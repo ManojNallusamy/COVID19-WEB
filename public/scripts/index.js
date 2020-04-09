@@ -29,6 +29,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
     
     // Set chart options
     var options = {
+        legend: { position: 'bottom'},
         chart: {
             title: chrtTitle,
             subtitle: 'Source: MOHFW'
@@ -42,9 +43,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
         }, 
         colors: [   
             'rgb(0, 51, 102)','green','red'
-        ],
-        // legend: 'top',
-        backgroundColor: 'whitesmoke'
+        ]
         //  'width':auto,
         //  'height':60%      
     };
