@@ -70,7 +70,11 @@ body{
     background-color: whitesmoke;
 }
 .container{
-    color: #133939;
+    color: #22282a;
+}
+.foot{
+    color: white;
+    text-align: center;
 }
 /* .ui.header{
     font-size: 1rem;
@@ -85,13 +89,13 @@ img{
     filter: invert(100%);
 }
 .head{
-    background-color: #133939;
+    background-color: #22282a;
 }
 .ui.grid{
     margin-top: 0rem;
 }
 .ui.sortable.table thead th{
-    background-color: #133939;
+    background-color: #22282a;
     color: white;
 }
 .ui.table thead tr:first-child > th {
