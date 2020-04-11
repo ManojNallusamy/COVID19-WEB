@@ -106,6 +106,6 @@ img{
 #time{
     opacity: 0.5;
 }
-.ui.table{
-    margin-bottom: 4rem;
+.ui.table:last-child{
+    margin-bottom: 2rem;
 }
