@@ -68,7 +68,7 @@
                         </div>
                         <div class="green card">
                             <div class="content">
-                              <div class="header" style="color: rgb(0, 102, 0);">Recovered</div>
+                              <div class="header" id="rvd" style="color: rgb(0, 102, 0);">Recovered</div>
                               <div class="meta"><%= ((statedata[1]["recovered"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
                                   <strong class="count"><%= statedata[1]["recovered"] %></strong> (+<%= statedata[1]["dailyrecovered"] %>)
@@ -109,7 +109,7 @@
                     <tr>
                         <th>State</th>
                         <th class="">Active</th>
-                        <th class="">Recovered</th>
+                        <th class="">Rcvrd</th>
                         <th class="">Deaths</th>
                         <th class="">Total</th>
                     </tr>

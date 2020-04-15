@@ -15,7 +15,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
     var data = new google.visualization.DataTable();
     
     // var daily = []  ;
-    data.addColumn('string', 'Time');
+    data.addColumn('string', '');
     data.addColumn('number', 'Confirmed');
     data.addColumn('number', 'Recovered');
     data.addColumn('number', 'Deaths');
@@ -37,7 +37,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
         },
            
         hAxis: {
-            title: 'Time',         
+            title: '',         
         },
         vAxis: {
             title: 'Cases',        
@@ -59,7 +59,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
 
     google.charts.setOnLoadCallback(barChart);
     function barChart() {
-        rows=[['Time', 'Deaths', 'Recovered', 'Confirmed']];
+        rows=[['', 'Deaths', 'Recovered', 'Confirmed']];
         var ctr=0;
         daily.forEach((day)=>{
             if(day['date'] == "01 March ")
@@ -87,3 +87,29 @@ function drawChart(chrtTitle,chrtName,colValues) {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+
+    //
+    // var isOutOfViewport = function (elem) {
+
+        // Get element's bounding
+    //     var bounding = elem.getBoundingClientRect();
+    
+    //     // Check if it's out of the viewport on each side
+    //     var out = {};
+    //     out.top = bounding.top < 0;
+    //     out.left = bounding.left < 0;
+    //     out.bottom = bounding.bottom > (window.innerHeight || document.documentElement.clientHeight);
+    //     out.right = bounding.right > (window.innerWidth || document.documentElement.clientWidth);
+    //     out.any = out.top || out.left || out.bottom || out.right;
+    //     out.all = out.top && out.left && out.bottom && out.right;
+    
+    //     return out;
+    
+    // };
+    // var tbl = document.querySelector("table");
+    // if(isOutOfViewport(tbl).right)
+    // {
+    //     document.querySelector("#rvd").textContent = "Rcvrd";
+    // }
+
+        
