@@ -2,14 +2,46 @@
 <% statedata.sort((a,b)=>{ %>
 <%  return b["total"]-a["total"]; %>
 <% }) %>
-<div class="head fade-in one">
+<!-- <div class="head fade-in one">
 <div class="ui container" >
     <div class="ui centered inverted huge header">
         <img src="/images/headericon.png" alt="icon">
           Live Covid19 Tracker
     </div>
 </div>
-</div>
+</div> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <div class="ui inverted header">
+        <img src="/images/headericon.png" alt="icon">
+          Covid19 Tracker
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Global Stats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Search District</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">More info</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+</nav>
+
 <div class="ui container" >
     <div class="ui stackable grid">
         <div class="eight wide column fade-in two">
@@ -131,7 +163,7 @@
         </div>
     </div>
     <div id="json" hidden> <%= daily %></div>
-    <script src="/scripts/index.js"></script>
+   
 </div>
 
 
