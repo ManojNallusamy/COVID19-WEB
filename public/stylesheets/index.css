@@ -60,7 +60,9 @@
 -moz-animation-delay: 2.5s;
 animation-delay: 2.5s;
 }
-
+.container{
+    padding: 0;
+}
 
 table{
     max-width: 500px;
