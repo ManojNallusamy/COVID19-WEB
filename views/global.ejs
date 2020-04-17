@@ -343,15 +343,15 @@
     title.fill = am4core.color("#ffffff");
     title.y = 20;
   
-    // switch between map and globe
-    var mapGlobeSwitch = mapChart.createChild(am4core.SwitchButton);
-    mapGlobeSwitch.align = "right"
-    mapGlobeSwitch.y = 15;
-    mapGlobeSwitch.leftLabel.text = "Map";
-    mapGlobeSwitch.leftLabel.fill = am4core.color("#ffffff");
-    mapGlobeSwitch.rightLabel.fill = am4core.color("#ffffff");
-    mapGlobeSwitch.rightLabel.text = "Globe";
-    mapGlobeSwitch.verticalCenter = "top";
+    // // switch between map and globe
+    // var mapGlobeSwitch = mapChart.createChild(am4core.SwitchButton);
+    // mapGlobeSwitch.align = "right"
+    // mapGlobeSwitch.y = 15;
+    // mapGlobeSwitch.leftLabel.text = "Map";
+    // mapGlobeSwitch.leftLabel.fill = am4core.color("#ffffff");
+    // mapGlobeSwitch.rightLabel.fill = am4core.color("#ffffff");
+    // mapGlobeSwitch.rightLabel.text = "Globe";
+    // mapGlobeSwitch.verticalCenter = "top";
   
   
     mapGlobeSwitch.events.on("toggled", function() {
@@ -371,17 +371,17 @@
     })
   
   
-    // switch between map and globe
-    var absolutePerCapitaSwitch = mapChart.createChild(am4core.SwitchButton);
-    absolutePerCapitaSwitch.align = "center"
-    absolutePerCapitaSwitch.y = 15;
-    absolutePerCapitaSwitch.leftLabel.text = "Absolute";
-    absolutePerCapitaSwitch.leftLabel.fill = am4core.color("#ffffff");
-    absolutePerCapitaSwitch.rightLabel.fill = am4core.color("#ffffff");
-    absolutePerCapitaSwitch.rightLabel.text = "Per Capita";
-    absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
-    absolutePerCapitaSwitch.rightLabel.tooltipText = "When calculating max value, countries with population less than 100.000 are not included."
-    absolutePerCapitaSwitch.verticalCenter = "top";
+    // // switch between map and globe
+    // var absolutePerCapitaSwitch = mapChart.createChild(am4core.SwitchButton);
+    // absolutePerCapitaSwitch.align = "center"
+    // absolutePerCapitaSwitch.y = 15;
+    // absolutePerCapitaSwitch.leftLabel.text = "Absolute";
+    // absolutePerCapitaSwitch.leftLabel.fill = am4core.color("#ffffff");
+    // absolutePerCapitaSwitch.rightLabel.fill = am4core.color("#ffffff");
+    // absolutePerCapitaSwitch.rightLabel.text = "Per Capita";
+    // absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
+    // absolutePerCapitaSwitch.rightLabel.tooltipText = "When calculating max value, countries with population less than 100.000 are not included."
+    // absolutePerCapitaSwitch.verticalCenter = "top";
   
   
     absolutePerCapitaSwitch.events.on("toggled", function() {
