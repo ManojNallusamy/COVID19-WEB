@@ -14,12 +14,13 @@ mongoose.connect("mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net
 
 var statewise = require("./models/statewise");
 var dailydata = require("./models/dailydata");
+var global = require("./models/global");
 //load india data
 var loadstatewise = require("./seeds");
 var updatetime = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
 updatetime = new Date(updatetime);
 updatetime = updatetime.toLocaleTimeString();
-loadstatewise();
+// loadstatewise();
 var job = cron.job('0 0 */2 * * *',()=>{
     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
     updatetime = new Date(updatetime);
@@ -34,9 +35,19 @@ app.get("/",(req,res)=>{
         });
     });
 });   
+
+app.get("/global",(req,res)=>{
+    global.find({},(err,globaldata)=>{
+        res.render("global",{global: globaldata});  
+    })
+})
+
+app.get("/info",(req,res)=>{
+    res.render("info");
+})
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 4000;
 }    
 app.listen(port,()=>{
     console.log("Covid App Server Started!!!");

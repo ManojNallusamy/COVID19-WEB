@@ -1,6 +1,7 @@
 var request = require("request"),
     statewise = require("./models/statewise"),
-    dailydata = require("./models/dailydata");
+    dailydata = require("./models/dailydata"),
+    global = require("./models/global");
 
 
 function loadData()
@@ -51,6 +52,22 @@ function loadData()
                         }) 
                         console.log("DB Updated."); 
                     });
+                    global.deleteMany({},(err)=>{
+                        console.log("Global data cleared");
+                        body['areas'].forEach((country)=>{
+                            global.create(
+                                {
+                                    dailyrecovered: country["totalRecoveredDelta"],
+                                    dailydeaths:country["totalDeathsDelta"],
+                                    dailytotal: country["totalConfirmedDelta"],
+                                    name: country['displayName'],
+                                    active: country["totalConfirmed"]-country["totalRecovered"]-body["totalDeaths"],
+                                    recovered: country["totalRecovered"],
+                                    deaths: country["totalDeaths"],
+                                    total: country["totalConfirmed"]
+                                });
+                        })
+                    })
                 }
             });
         }
