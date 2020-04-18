@@ -20,7 +20,7 @@ var loadstatewise = require("./seeds");
 var updatetime = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
 updatetime = new Date(updatetime);
 updatetime = updatetime.toLocaleTimeString();
-// loadstatewise();
+loadstatewise();
 var job = cron.job('0 0 */2 * * *',()=>{
     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
     updatetime = new Date(updatetime);
