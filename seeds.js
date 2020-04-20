@@ -3,7 +3,7 @@ var request = require("request"),
     dailydata = require("./models/dailydata"),
     global = require("./models/global");
 
-
+var districtdata ;
 function loadData()
 {
     //load india data

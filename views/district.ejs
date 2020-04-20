@@ -1,0 +1,95 @@
+<%- include("partials/header") -%>
+<style>
+    #accordion{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .card{
+        min-width: 280px;
+        width: 60%;
+    }
+</style>
+<!-- <select class="mdb-select md-form" searchable="Search here..">
+    <option value="" disabled selected>Choose your country</option>
+    <option value="1">USA</option>
+    <option value="2">Germany</option>
+    <option value="3">France</option>
+    <option value="3">Poland</option>
+    <option value="3">Japan</option>
+  </select>
+  <label class="mdb-main-label">Label example</label> -->
+  <div class="ui container">
+    <div id="accordion">
+        <h4>SELECT STATE</h4>  
+        <% data.forEach((state)=>{ %>
+        <div class="card">
+          <div class="card-header" id="<%= state['state'].substr(0,5) %>">
+            <h5 class="mb-0">
+              <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#<%= state['state'].substr(0,5) %>col" aria-expanded="true" aria-controls="<%= state['state'].substr(0,5) %>col">
+                <%= state['state'] %>
+              </button>
+            </h5>
+          </div>
+      
+          <div id="<%= state['state'].substr(0,5) %>col" class="collapse" aria-labelledby="<%= state['state'].substr(0,5) %>" data-parent="#accordion">
+            <div class="card-body">
+                <table class="ui sortable unstackable selectable celled table">
+                    <thead>
+                        <tr>
+                            <th>Districts</th>
+                            <th class="">Confirmed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            
+                                <% state['districtData'].forEach((district)=>{ %>
+                                    <tr>
+                                        <td><%= district['district'] %></td>
+                                        <td><%= district['confirmed'] %></td>
+                                    </tr>
+                                <% }) %>
+                            
+                    </tbody>
+                </table>
+             </div>
+          </div>
+        </div> 
+        <% }) %>
+      </div>
+  </div>
+  
+  <!-- <div id="json" hidden> <%= data %></div> -->
+<!-- <script>
+    var data = JSON.parse(document.querySelector("#json").textContent); 
+    var target = document.querySelector("input");
+    var table = document.querySelector("table");
+    target.addEventListener("enter",()=>{
+        console.log("fired!!"+ target.value);
+        console.log(document.querySelector(".results").textContent); 
+        data.forEach((state)=>{
+            if(state['state']==document.querySelector(".results").textContent)
+            {
+                console.log("heythere");
+                state['districtData'].forEach((dis)=>{
+                var row = table.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.textContent = dis['district'];
+                cell2.textContent = dis['confirmed'];
+                })
+            }
+        })
+    })
+
+
+    var content = [];
+     
+    data.forEach((state)=>{
+        content.push({title : state['state']});
+    });
+    $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+    });
+</script>   -->
+
+<%- include("partials/footer") -%>  
