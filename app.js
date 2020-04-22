@@ -29,13 +29,20 @@ var updatetime = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
 updatetime = new Date(updatetime);
 updatetime = updatetime.toLocaleTimeString();
 // loadstatewise();
-var job = cron.job('0 10 * * * *',()=>{
+// var job = cron.job('0 10 * * * *',()=>{
+//     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+//     updatetime = new Date(updatetime);
+//     updatetime = updatetime.toLocaleTimeString();
+//     loadstatewise();
+// },null,true,'Asia/Calcutta');
+// job.start();
+
+setTimeout(()=>{
     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
     updatetime = new Date(updatetime);
     updatetime = updatetime.toLocaleTimeString();
     loadstatewise();
-},null,true,'Asia/Calcutta');
-job.start();
+},1000*60*5);
 var st,dt;
 app.get("/",(req,res)=>{
     if(!st || !dt)
@@ -44,6 +51,7 @@ app.get("/",(req,res)=>{
             dailydata.find({},(err,daily)=>{
                 st=statedata;
                 dt=daily;
+                // console.log(daily);
                 res.render("index",{statedata: statedata, daily: JSON.stringify(daily),time: updatetime});
             });
         });

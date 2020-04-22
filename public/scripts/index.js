@@ -10,15 +10,18 @@ $(document).ready(function(){
     });
   });
   var daily = JSON.parse(document.querySelector("#json").textContent);  
+  daily.sort((a,b)=>{ 
+      return a["_id"]-b["_id"]; 
+     }) 
 function drawChart(chrtTitle,chrtName,colValues) {
     // Define the chart to be drawn.
     var data = new google.visualization.DataTable();
     
     // var daily = []  ;
     data.addColumn('string', '');
-    data.addColumn('number', 'Confirmed');
-    data.addColumn('number', 'Recovered');
-    data.addColumn('number', 'Deaths');
+    data.addColumn('number', 'Cnfrmd');
+    data.addColumn('number', 'Rcvrd');
+    data.addColumn('number', 'Death');
     rows=[];
     daily.forEach((day)=>{
         // if(day["date"].substring(0,2)=="15")
@@ -59,7 +62,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
 
     google.charts.setOnLoadCallback(barChart);
     function barChart() {
-        rows=[['', 'Deaths', 'Recovered', 'Confirmed']];
+        rows=[['', 'Death', 'Rcvrd', 'Cnfrmd']];
         var ctr=0;
         daily.forEach((day)=>{
             if(day['date'] == "01 March ")
@@ -75,6 +78,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
             title: 'DAILY CASES - INDIA',
             subtitle: 'Data since March 1',
           },
+          legend: { position: 'top', alignment: 'start' },
         //   legend: { position: 'top', maxLines: 3 },
         isStacked: true,
           colors: [   

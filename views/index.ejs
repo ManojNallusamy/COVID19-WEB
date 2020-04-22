@@ -2,6 +2,9 @@
 <% statedata.sort((a,b)=>{ %>
 <%  return b["total"]-a["total"]; %>
 <% }) %>
+<% function numberWithCommas(x) { %>
+<%  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %>
+<% } %>
 <!-- <div class="head fade-in one">
 <div class="ui container" >
     <div class="ui centered inverted huge header">
@@ -24,7 +27,7 @@
                             <div class="header" style="color: rgb(255, 102, 0);">Active Cases</div>
                             <div class="meta"><%= ((statedata[0]["active"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                             <div class="description">
-                                <strong><span class="count"><%= statedata[0]["active"] %></span></strong>
+                                <strong><span class="count"><%= numberWithCommas(statedata[0]["active"]) %></span></strong>
                             </div>
                           </div>
                         </div>
@@ -33,7 +36,7 @@
                               <div class="header" style="color: rgb(0, 102, 0);">Recovered</div>
                               <div class="meta"><%= ((statedata[0]["recovered"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[0]["recovered"] %></strong> (+<%= statedata[0]["dailyrecovered"] %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["recovered"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailyrecovered"]) %>)
                               </div>
                             </div>
                           </div>
@@ -42,7 +45,7 @@
                               <div class="header" style="color: rgb(204, 51, 0);">Deaths</div>
                               <div class="meta"><%= ((statedata[0]["deaths"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[0]["deaths"] %></strong> (+<%= statedata[0]["dailydeaths"] %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["deaths"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailydeaths"]) %>)
                               </div>
                             </div>
                           </div>
@@ -50,7 +53,7 @@
                             <div class="content">
                               <div class="header">Total Cases</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[0]["total"] %></strong> (+<%= statedata[0]["dailytotal"] %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["total"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailytotal"]) %>)
                               </div>
                             </div>
                           </div>    
@@ -64,7 +67,7 @@
                             <div class="header" style="color: rgb(255, 102, 0);">Active Cases</div>
                             <div class="meta"><%= ((statedata[1]["active"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
                             <div class="description">
-                                <strong class="count"><%= statedata[1]["active"] %></strong>
+                                <strong class="count"><%= numberWithCommas(statedata[1]["active"]) %></strong>
                             </div>
                           </div>
                         </div>
@@ -73,7 +76,7 @@
                               <div class="header" id="rvd" style="color: rgb(0, 102, 0);">Recovered</div>
                               <div class="meta"><%= ((statedata[1]["recovered"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[1]["recovered"] %></strong> (+<%= statedata[1]["dailyrecovered"] %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[1]["recovered"]) %></strong> (+<%= numberWithCommas(statedata[1]["dailyrecovered"]) %>)
                               </div>
                             </div>
                           </div>
@@ -82,7 +85,7 @@
                               <div class="header" style="color: rgb(204, 51, 0);">Deaths</div>
                               <div class="meta"><%= ((statedata[1]["deaths"]/statedata[1]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[1]["deaths"] %></strong> (+<%= statedata[1]["dailydeaths"] %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[1]["deaths"]) %></strong> (+<%= numberWithCommas(statedata[1]["dailydeaths"]) %>)
                               </div>
                             </div>
                           </div>
@@ -90,7 +93,7 @@
                             <div class="content">
                               <div class="header">Total Cases</div>
                               <div class="description">
-                                  <strong class="count"><%= statedata[1]["total"] %></strong> (+<%= statedata[1]["dailytotal"] %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[1]["total"]) %></strong> (+<%= numberWithCommas(statedata[1]["dailytotal"]) %>)
                               </div>
                             </div>
                           </div>    
@@ -122,10 +125,10 @@
                             <% return;} %>
                         <tr>
                             <td><strong><%= state["name"] %></strong></td>
-                            <td><%= state["active"] %></td>
-                            <td><%= state["recovered"] %></td>
-                            <td><%= state["deaths"] %></td>
-                            <td><%= state["total"] %></td>
+                            <td><%= numberWithCommas(state["active"]) %></td>
+                            <td><%= numberWithCommas(state["recovered"]) %></td>
+                            <td><%= numberWithCommas(state["deaths"]) %></td>
+                            <td><%= numberWithCommas(state["total"]) %></td>
                         </tr>
                     <% }) %>
                 </tbody>
