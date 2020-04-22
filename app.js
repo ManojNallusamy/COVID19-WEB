@@ -36,17 +36,20 @@ updatetime = updatetime.toLocaleTimeString();
 //     loadstatewise();
 // },null,true,'Asia/Calcutta');
 // job.start();
-
+var st,dt;
 setTimeout(()=>{
     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
     updatetime = new Date(updatetime);
     updatetime = updatetime.toLocaleTimeString();
     loadstatewise();
+    st=undefined;
+    dt=undefined;
 },1000*60*5);
-var st,dt;
+// var st,dt;
 app.get("/",(req,res)=>{
     if(!st || !dt)
     {
+        console.log("hohoooo");
         statewise.find({},(err,statedata)=>{
             dailydata.find({},(err,daily)=>{
                 st=statedata;
