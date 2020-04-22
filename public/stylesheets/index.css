@@ -111,3 +111,7 @@ img{
 .ui.table:last-child{
     margin-bottom: 2rem;
 }
+
+.hide{
+    display: none;
+  }

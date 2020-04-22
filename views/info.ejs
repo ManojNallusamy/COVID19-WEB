@@ -17,7 +17,7 @@
 <div class="ui container" id="content">
     <div class="ui grid">
         <div class="four wide column">
-          <div class="ui vertical fluid tabular menu">
+          <div class="ui vertical fluid tabular menu fade-in one">
             <a class="active item" href="#ov">
               Overview
             </a>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="twelve wide stretched column">
-          <div class="ui segment">
+          <div class="ui segment fade-in two">
               <div id="ov">
                     <h2>Overview</h2>
                     <p>
@@ -117,13 +117,12 @@
         </div>
       </div>
 </div>
-<script>
-   $(function(){
-		$('.item').click(function(){
-			$('.active').removeClass('active');
-            $(this).addClass('active');	
-		})
-	})
-</script>
-
   <%- include("partials/footer") -%>  
+  <script>
+    $(function(){
+     $('.item').click(function(){
+       $('.active').removeClass('active');
+             $(this).addClass('active');	
+     })
+   })
+ </script>

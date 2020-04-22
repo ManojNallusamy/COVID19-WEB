@@ -50,24 +50,8 @@ function loadData()
                                     total: state["confirmed"]
                                 });
                         }) 
-                        console.log("DB Updated."); 
+                        console.log("DB1 Updated."); 
                     });
-                    // global.deleteMany({},(err)=>{
-                    //     console.log("Global data cleared");
-                    //     body['areas'].forEach((country)=>{
-                    //         global.create(
-                    //             {
-                    //                 dailyrecovered: country["totalRecoveredDelta"],
-                    //                 dailydeaths:country["totalDeathsDelta"],
-                    //                 dailytotal: country["totalConfirmedDelta"],
-                    //                 name: country['displayName'],
-                    //                 active: country["totalConfirmed"]-country["totalRecovered"]-body["totalDeaths"],
-                    //                 recovered: country["totalRecovered"],
-                    //                 deaths: country["totalDeaths"],
-                    //                 total: country["totalConfirmed"]
-                    //             });
-                    //     })
-                    // })
                 }
             });
         }

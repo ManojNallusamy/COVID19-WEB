@@ -5,19 +5,9 @@
 <% function numberWithCommas(x) { %>
 <%  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %>
 <% } %>
-<!-- <div class="head fade-in one">
-<div class="ui container" >
-    <div class="ui centered inverted huge header">
-        <img src="/images/headericon.png" alt="icon">
-          Live Covid19 Tracker
-    </div>
-</div>
-</div> -->
-
-
 <div class="ui container" >
     <div class="ui stackable grid">
-        <div class="eight wide column fade-in two">
+        <div class="eight wide column fade-in one">
             <div class="ui grid">
                 <div class="eight wide column">
                     <h1>GLOBAL</h1>
@@ -59,7 +49,7 @@
                           </div>    
                     </div>
                 </div>
-                <div class="eight wide column fade-in three">
+                <div class="eight wide column fade-in two">
                     <h1>INDIA</h1>
                     <div class="ui cards">
                         <div class="orange card">
@@ -102,21 +92,33 @@
                 <div id="time" style="color: black;text-align: right;">Daily Cases in bracket.<span style="text-align: right;">Last Updated: <%= time %></span></div>
                 <div></div>
             </div>
-            <div id = "chart1" class="fade-in four"style = "width: 100%; height: 20%; margin: 2rem auto">
+            <div id = "chart1" class="fade-in three"style = "width: 100%; height: 20%; margin: 2rem auto">
             </div>
-            <div id = "chart2" class="fade-in four"style = "width: 100%; height: 20%; margin: 1rem auto">
+            <div id = "chart2" class="fade-in three"style = "width: 100%; height: 20%; margin: 1rem auto">
             </div>
         </div>
-        <div class="eight wide column fade-in five">
-            <h4>INDIA STATEWISE</h4>
+        <div class="eight wide column fade-in four">
+            <h4>INDIA STATEWISE &nbsp &nbsp
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary btn-sm active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> CUMULATIVE
+              </label>
+              <label class="btn btn-secondary btn-sm">
+                <input type="radio" name="options" id="option2" autocomplete="off"> DAILY
+              </label>
+            </div>
+            </h4>
             <table class="ui sortable unstackable selectable celled table">
                 <thead>
                     <tr>
                         <th>State</th>
-                        <th class="">Active</th>
-                        <th class="">Rcvrd</th>
-                        <th class="">Deaths</th>
-                        <th class="">Total</th>
+                        <th class="disptotal order">Cnfmd</th>
+                        <th class="disptotal">Active</th>
+                        <th class="disptotal">Rcvrd</th>
+                        <th class="disptotal">Deaths</th>
+                        <th class="disp hide order">Confirmed</th>
+                        <th class="disp hide">Recovered</th>
+                        <th class="disp hide">Deaths</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -125,10 +127,13 @@
                             <% return;} %>
                         <tr>
                             <td><strong><%= state["name"] %></strong></td>
-                            <td><%= numberWithCommas(state["active"]) %></td>
-                            <td><%= numberWithCommas(state["recovered"]) %></td>
-                            <td><%= numberWithCommas(state["deaths"]) %></td>
-                            <td><%= numberWithCommas(state["total"]) %></td>
+                            <td class="disptotal"><%= numberWithCommas(state["total"]) %></td>
+                            <td class="disptotal"><%= numberWithCommas(state["active"]) %></td>
+                            <td class="disptotal"><%= numberWithCommas(state["recovered"]) %></td>
+                            <td class="disptotal"><%= numberWithCommas(state["deaths"]) %></td>
+                            <td class="disp hide val"><%= numberWithCommas(state["dailytotal"]) %></td>
+                            <td class="disp hide"><%= numberWithCommas(state["dailyrecovered"]) %></td>
+                            <td class="disp hide"><%= numberWithCommas(state["dailydeaths"]) %></td>
                         </tr>
                     <% }) %>
                 </tbody>
@@ -137,6 +142,7 @@
     </div>
     <div id="json" hidden> <%= daily %></div>
 </div>
-<script src="/scripts/index.js"></script>
 
 <%- include("partials/footer") -%>
+
+<script src="/scripts/index.js"></script>

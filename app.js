@@ -44,12 +44,12 @@ setTimeout(()=>{
     loadstatewise();
     st=undefined;
     dt=undefined;
-},1000*60*5);
+},1000*60*10);
 // var st,dt;
 app.get("/",(req,res)=>{
     if(!st || !dt)
     {
-        console.log("hohoooo");
+        // console.log("hohoooo");
         statewise.find({},(err,statedata)=>{
             dailydata.find({},(err,daily)=>{
                 st=statedata;

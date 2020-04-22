@@ -5,10 +5,31 @@ $(document).ready(function(){
     $('table').addClass('tablesorter');
     $('table').tablesorter({
         // theme: 'blue',
+        headers: {
+            // set initial sort order by column, this headers option setting overrides the sortInitialOrder option
+            1: { sortInitialOrder: 'asc' }
+          },
         headerTemplate: '{content}{icon}',
         widgets: ['zebra','columns']
     });
   });
+  document.querySelector("#option1").addEventListener("click",()=>{
+      $(".disptotal").removeClass("hide");
+      $(".disptotal").removeClass("hide");
+      $(".disp").addClass("hide");
+      $(".disp").addClass("hide");
+  })
+  document.querySelector("#option2").addEventListener("click",()=>{
+    $(".disp").removeClass("hide");
+    $(".disp").removeClass("hide");
+    $(".disptotal").addClass("hide");
+    $(".disptotal").addClass("hide");
+    if($(".val").text()==0)
+    {
+        $('.order').click();
+    }
+  })
+//   $('.total').remove();
   var daily = JSON.parse(document.querySelector("#json").textContent);  
   daily.sort((a,b)=>{ 
       return a["_id"]-b["_id"]; 
