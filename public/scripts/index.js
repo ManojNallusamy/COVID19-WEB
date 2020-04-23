@@ -24,10 +24,6 @@ $(document).ready(function(){
     $(".disp").removeClass("hide");
     $(".disptotal").addClass("hide");
     $(".disptotal").addClass("hide");
-    if($(".val").text()==0)
-    {
-        $('.order').click();
-    }
   })
 //   $('.total').remove();
   var daily = JSON.parse(document.querySelector("#json").textContent);  

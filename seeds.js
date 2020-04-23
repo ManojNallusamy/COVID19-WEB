@@ -16,27 +16,27 @@ function loadData()
         else
         {
             var data = JSON.parse(body);
-            request("https://bing.com/covid/data",(error,response,body)=>{
-                if(error)
-                {
-                    console.log("Unable to retrieve from bing.");
-                }
-                else
-                {
-                    var body = JSON.parse(body);
-                    statewise.deleteMany({},(err)=>{
+            // request("https://bing.com/covid/data",(error,response,body)=>{
+            //     if(error)
+            //     {
+            //         console.log("Unable to retrieve from bing.");
+            //     }
+            //     else
+            //     {
+                    // var body = JSON.parse(body);
+                    statewise.deleteMany({'name': {$ne : "Global"}},(err)=>{
                         console.log("DB1 Cleared.");
-                        statewise.create(
-                            {
-                                dailyrecovered: body["totalRecoveredDelta"],
-                                dailydeaths:body["totalDeathsDelta"],
-                                dailytotal: body["totalConfirmedDelta"],
-                                name: "Global",
-                                active: body["totalConfirmed"]-body["totalRecovered"]-body["totalDeaths"],
-                                recovered: body["totalRecovered"],
-                                deaths: body["totalDeaths"],
-                                total: body["totalConfirmed"]
-                            });
+                        // statewise.create(
+                        //     {
+                        //         dailyrecovered: body["totalRecoveredDelta"],
+                        //         dailydeaths:body["totalDeathsDelta"],
+                        //         dailytotal: body["totalConfirmedDelta"],
+                        //         name: "Global",
+                        //         active: body["totalConfirmed"]-body["totalRecovered"]-body["totalDeaths"],
+                        //         recovered: body["totalRecovered"],
+                        //         deaths: body["totalDeaths"],
+                        //         total: body["totalConfirmed"]
+                        //     });
                         data["statewise"].forEach((state)=>{
                             statewise.create(
                                 {
@@ -52,8 +52,8 @@ function loadData()
                         }) 
                         console.log("DB1 Updated."); 
                     });
-                }
-            });
+                // }
+            // });
         }
     });
 

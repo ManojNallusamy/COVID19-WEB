@@ -63,6 +63,31 @@ app.get("/",(req,res)=>{
     {
         res.render("index",{statedata: st, daily: JSON.stringify(dt),time: updatetime});
     }
+
+    ///////////
+    // var url ="https://api.covid19india.org/data.json";
+    // request(url, function (error, response, body) {
+    //     if(error)
+    //     {
+    //         console.log("Unable to retrieve data from india DB.");
+    //     }
+    //     else
+    //     {
+    //         var statedata = body;
+    //         request("https://bing.com/covid/data",(error,response,body)=>{
+    //             if(error)
+    //             {
+    //                 console.log("Unable to retrieve from bing.");
+    //             }
+    //             else
+    //             {
+    //                 console.log(body);
+    //                 // res.render("index",{statedata:statedata , global:JSON.parse(body) });
+    //             }
+    //         });
+    //     }
+    // });
+    ///////////
 });   
 
 app.get("/global",(req,res)=>{
