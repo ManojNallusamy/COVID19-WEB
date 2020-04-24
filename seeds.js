@@ -16,15 +16,15 @@ function loadData()
         else
         {
             var data = JSON.parse(body);
-            // request("https://bing.com/covid/data",(error,response,body)=>{
-            //     if(error)
-            //     {
-            //         console.log("Unable to retrieve from bing.");
-            //     }
-            //     else
-            //     {
-                    // var body = JSON.parse(body);
-                    statewise.deleteMany({'name': {$ne : "Global"}},(err)=>{
+            request("https://covid2019-api.herokuapp.com/v2/total",(error,response,body)=>{
+                if(error)
+                {
+                    console.log("Unable to retrieve from bing.");
+                }
+                else
+                {
+                    var body = JSON.parse(body);
+                    statewise.deleteMany({},(err)=>{
                         console.log("DB1 Cleared.");
                         // statewise.create(
                         //     {
@@ -36,7 +36,18 @@ function loadData()
                         //         recovered: body["totalRecovered"],
                         //         deaths: body["totalDeaths"],
                         //         total: body["totalConfirmed"]
-                        //     });
+                        //     }); 
+                        statewise.create(
+                            {
+                                dailyrecovered: body["data"]['recovered'],
+                                dailydeaths:body["data"]['deaths'],
+                                dailytotal: body["data"]['confirmed'],
+                                name: "Global",
+                                active: body["data"]['active'],
+                                recovered: body["data"]['recovered'],
+                                deaths: body["data"]['deaths'],
+                                total: body["data"]['confirmed']
+                            });
                         data["statewise"].forEach((state)=>{
                             statewise.create(
                                 {
@@ -52,8 +63,8 @@ function loadData()
                         }) 
                         console.log("DB1 Updated."); 
                     });
-                // }
-            // });
+                }
+            });
         }
     });
 

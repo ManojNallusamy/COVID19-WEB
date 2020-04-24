@@ -54,7 +54,7 @@ app.get("/",(req,res)=>{
             dailydata.find({},(err,daily)=>{
                 st=statedata;
                 dt=daily;
-                // console.log(daily);
+                console.log(daily);
                 res.render("index",{statedata: statedata, daily: JSON.stringify(daily),time: updatetime});
             });
         });

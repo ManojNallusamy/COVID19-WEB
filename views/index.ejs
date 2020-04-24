@@ -26,7 +26,7 @@
                               <div class="header" style="color: rgb(0, 102, 0);">Recovered</div>
                               <div class="meta"><%= ((statedata[0]["recovered"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= numberWithCommas(statedata[0]["recovered"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailyrecovered"]) %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["recovered"]) %></strong> <!--(+<%= numberWithCommas(statedata[0]["dailyrecovered"]) %>) -->
                               </div>
                             </div>
                           </div>
@@ -35,7 +35,7 @@
                               <div class="header" style="color: rgb(204, 51, 0);">Deaths</div>
                               <div class="meta"><%= ((statedata[0]["deaths"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= numberWithCommas(statedata[0]["deaths"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailydeaths"]) %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["deaths"]) %></strong> <!--(+<%= numberWithCommas(statedata[0]["dailydeaths"]) %>) -->
                               </div>
                             </div>
                           </div>
@@ -43,7 +43,7 @@
                             <div class="content">
                               <div class="header">Total Cases</div>
                               <div class="description">
-                                  <strong class="count"><%= numberWithCommas(statedata[0]["total"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailytotal"]) %>)
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["total"]) %></strong> <!--(+<%= numberWithCommas(statedata[0]["dailytotal"]) %>)-->
                               </div>
                             </div>
                           </div>    
