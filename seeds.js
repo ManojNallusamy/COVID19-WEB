@@ -19,7 +19,7 @@ function loadData()
             request("https://covid2019-api.herokuapp.com/v2/total",(error,response,body)=>{
                 if(error)
                 {
-                    console.log("Unable to retrieve from bing.");
+                    console.log("Unable to retrieve from global data.");
                 }
                 else
                 {
@@ -67,7 +67,6 @@ function loadData()
             });
         }
     });
-
     //Load daily data
     request("https://api.covid19india.org/data.json",(error,response,body)=>{
         if(error)
@@ -96,5 +95,4 @@ function loadData()
         }
     });
 }
-
 module.exports = loadData;

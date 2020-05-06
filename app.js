@@ -27,8 +27,12 @@ request("https://api.covid19india.org/v2/state_district_wise.json",(error,respon
 var loadstatewise = require("./seeds");
 var updatetime = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
 updatetime = new Date(updatetime);
+day=updatetime.getDate();
+mnth=updatetime.getMonth();
+var month=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 updatetime = updatetime.toLocaleTimeString();
 // loadstatewise();
+
 // var job = cron.job('0 10 * * * *',()=>{
 //     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
 //     updatetime = new Date(updatetime);
@@ -46,22 +50,49 @@ setTimeout(()=>{
     dt=undefined;
 },1000*60*10);
 // var st,dt;
+// var mn=[],ans=0;
+// dailydata.find({},(err,res)=>{
+//     res.forEach((daily)=>{
+//         mn.push(Number(daily['confirmed']))
+//         // console.log(daily['confirmed']);
+//     })
+//     for(i=1;i<mn.length;i++)
+//     {
+//         ans+=mn[i]/mn[i-1];
+//         console.log((mn[i])/mn[i-1]);
+//     }
+//     console.log("mean="+ans/(mn.length-1));
+// })
+var dailyarr=[],mean=0;
 app.get("/",(req,res)=>{
     if(!st || !dt)
     {
+        mean=0;
+        dailyarr=[]
         // console.log("hohoooo");
         statewise.find({},(err,statedata)=>{
             dailydata.find({},(err,daily)=>{
                 st=statedata;
-                dt=daily;
-                console.log(daily);
-                res.render("index",{statedata: statedata, daily: JSON.stringify(daily),time: updatetime});
+                daily.sort((a,b)=>{ 
+                    return new Date(a["date"])- new Date(b["date"]); 
+                   }) 
+                dt=daily;   
+                daily.forEach((res)=>{
+                    dailyarr.push(res['confirmed']);
+                })
+                for(i=dailyarr.length-10;i<dailyarr.length;i++)
+                {
+                    mean+=dailyarr[i]/dailyarr[i-1];
+                }
+                mean=mean/10;
+                console.log(mean);
+                res.render("index",{mean: mean,statedata: statedata, daily: JSON.stringify(daily),time: [updatetime,day,month[mnth]]});
             });
         });
     }
     if(st && dt)
     {
-        res.render("index",{statedata: st, daily: JSON.stringify(dt),time: updatetime});
+        res.render("index",{mean: mean,statedata: st, daily: JSON.stringify(dt),time: [updatetime,day,month[mnth]]});
     }
 
     ///////////
@@ -107,7 +138,7 @@ app.get("/info",(req,res)=>{
 })
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 4000;
+  port = 4001;
 }    
 app.listen(port,()=>{
     console.log("Covid App Server Started!!!");

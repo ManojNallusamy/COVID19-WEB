@@ -29,6 +29,9 @@
                         <tr>
                             <th>Districts</th>
                             <th class="">Confirmed</th>
+                            <th class="">Active</th>
+                            <th class="">Recovered</th>
+                            <th class="">Deceased</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +40,9 @@
                                     <tr>
                                         <td><%= district['district'] %></td>
                                         <td><%= district['confirmed'] %></td>
+                                        <td><%= district['active'] %></td>
+                                        <td><%= district['deceased'] %></td>
+                                        <td><%= district['recovered'] %></td>
                                     </tr>
                                 <% }) %>
                             

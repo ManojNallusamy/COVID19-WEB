@@ -27,9 +27,9 @@ $(document).ready(function(){
   })
 //   $('.total').remove();
   var daily = JSON.parse(document.querySelector("#json").textContent);  
-  daily.sort((a,b)=>{ 
-      return new Date(a["date"])- new Date(b["date"]); 
-     }) 
+  // daily.sort((a,b)=>{ 
+  //     return new Date(a["date"])- new Date(b["date"]); 
+  //    }) 
 function drawChart(chrtTitle,chrtName,colValues) {
     // Define the chart to be drawn.
     var data = new google.visualization.DataTable();
