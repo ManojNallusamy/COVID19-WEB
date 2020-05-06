@@ -40,12 +40,16 @@ function drawChart(chrtTitle,chrtName,colValues) {
     data.addColumn('number', 'Rcvrd');
     data.addColumn('number', 'Death');
     rows=[];
-    daily.forEach((day)=>{
-        // if(day["date"].substring(0,2)=="15")
-        // rows.push([day["date"].substring(0,2),Number(day["dailyconfirmed"])]);
-        // else
-        rows.push(["",day[colValues[0]],day[colValues[1]],day[colValues[2]]]);
-    })
+    // daily.forEach((day)=>{
+    //     // if(day["date"].substring(0,2)=="15")
+    //     // rows.push([day["date"].substring(0,2),Number(day["dailyconfirmed"])]);
+    //     // else
+    //     rows.push(["",day[colValues[0]],day[colValues[1]],day[colValues[2]]]);
+    // })
+    for(i=daily.length-30;i<daily.length;i++)
+    {
+      rows.push(["",daily[i][colValues[0]],daily[i][colValues[1]],daily[i][colValues[2]]]);
+    }
     data.addRows(rows);
     
     // Set chart options
@@ -53,7 +57,7 @@ function drawChart(chrtTitle,chrtName,colValues) {
         legend: { position: 'bottom'},
         chart: {
             title: chrtTitle,
-            subtitle: 'Source: MOHFW'
+            subtitle: 'Last 30 days'
         },
            
         hAxis: {
@@ -73,27 +77,31 @@ function drawChart(chrtTitle,chrtName,colValues) {
     var chart = new google.charts.Line(document.getElementById(chrtName));
     chart.draw(data, options);
     }
-    google.charts.setOnLoadCallback(()=>{ drawChart('TOTAL CASES - INDIA','chart1',['confirmed','recovered','deaths'])});
+    google.charts.setOnLoadCallback(()=>{ drawChart('GROWTH - INDIA','chart1',['confirmed','recovered','deaths'])});
     // google.charts.setOnLoadCallback(()=>{ drawChart('DAILY CASES - INDIA','chart2',['dailyconfirmed','dailyrecovered','dailydeaths'])});
 
 
     google.charts.setOnLoadCallback(barChart);
     function barChart() {
         rows=[['', 'Death', 'Rcvrd', 'Cnfrmd']];
-        var ctr=0;
-        daily.forEach((day)=>{
-            if(day['date'] == "01 March ")
-                ctr=1;
-            if(ctr==0)
-            return;    
-            rows.push(["  ",day['dailydeaths'],day['dailyrecovered'],day['dailyconfirmed']]);
-        })
+        // var ctr=0;
+        // daily.forEach((day)=>{
+        //     if(day['date'] == "01 March ")
+        //         ctr=1;
+        //     if(ctr==0)
+        //     return;    
+        //     rows.push(["  ",day['dailydeaths'],day['dailyrecovered'],day['dailyconfirmed']]);
+        // })
+        for(i=daily.length-30;i<daily.length;i++)
+        {
+          rows.push(["  ",daily[i]['dailydeaths'],daily[i]['dailyrecovered'],daily[i]['dailyconfirmed']]);
+        }
         var data = google.visualization.arrayToDataTable(rows);
 
         var options = {  
           chart: {
-            title: 'DAILY CASES - INDIA',
-            subtitle: 'Data since March 1',
+            title: 'DAILY TRENDS - INDIA',
+            subtitle: 'Last 30 days',
           },
           legend: { position: 'top', alignment: 'start' },
         //   legend: { position: 'top', maxLines: 3 },
