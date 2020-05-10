@@ -13,7 +13,7 @@
     <div id="accordion">
         <h4>SELECT STATE</h4>  
         <% data.forEach((state)=>{ %>
-        <div class="card">
+        <div class="card" >
           <div class="card-header" id="<%= state['state'].substr(0,5) %>">
             <h5 class="mb-0">
               <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#<%= state['state'].substr(0,5) %>col" aria-expanded="true" aria-controls="<%= state['state'].substr(0,5) %>col">
@@ -27,11 +27,11 @@
                 <table class="ui sortable unstackable selectable celled table">
                     <thead>
                         <tr>
-                            <th>Districts</th>
+                            <th>District</th>
                             <th class="">Cnfmd</th>
                             <th class="">Active</th>
                             <th class="">Rcvrd</th>
-                            <th class="">Deaths</th>
+                            <th class="">Death</th>
                         </tr>
                     </thead>
                     <tbody>

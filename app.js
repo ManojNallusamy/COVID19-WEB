@@ -9,9 +9,13 @@ app.set("view engine","ejs");
 app.use(express.static("public"));
 
 //DB connect
-// mongoose.connect("mongodb://localhost:27017/covid_app",{useNewUrlParser: true , useUnifiedTopology: true});
-mongoose.connect("mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true , useUnifiedTopology: true});
-
+mongoose.connect("mongodb://localhost:27017/covid_app",{useNewUrlParser: true , useUnifiedTopology: true});
+// mongoose.connect("mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true , useUnifiedTopology: true});
+// uri = "mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net/test?retryWrites=true&w=majority";
+// mongoose
+//      .connect( uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+//      .then(() => console.log( 'Database Connected' ))
+//      .catch(err => console.log( err ));
 var statewise = require("./models/statewise");
 var dailydata = require("./models/dailydata");
 var global = require("./models/global");
@@ -32,14 +36,6 @@ mnth=updatetime.getMonth();
 var month=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 updatetime = updatetime.toLocaleTimeString();
 // loadstatewise();
-
-// var job = cron.job('0 10 * * * *',()=>{
-//     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
-//     updatetime = new Date(updatetime);
-//     updatetime = updatetime.toLocaleTimeString();
-//     loadstatewise();
-// },null,true,'Asia/Calcutta');
-// job.start();
 var st,dt;
 setTimeout(()=>{
     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
@@ -48,21 +44,7 @@ setTimeout(()=>{
     loadstatewise();
     st=undefined;
     dt=undefined;
-},1000*60*10);
-// var st,dt;
-// var mn=[],ans=0;
-// dailydata.find({},(err,res)=>{
-//     res.forEach((daily)=>{
-//         mn.push(Number(daily['confirmed']))
-//         // console.log(daily['confirmed']);
-//     })
-//     for(i=1;i<mn.length;i++)
-//     {
-//         ans+=mn[i]/mn[i-1];
-//         console.log((mn[i])/mn[i-1]);
-//     }
-//     console.log("mean="+ans/(mn.length-1));
-// })
+},1000*60*5);
 var dailyarr=[],mean=0;
 app.get("/",(req,res)=>{
     if(!st || !dt)
@@ -85,7 +67,7 @@ app.get("/",(req,res)=>{
                     mean+=dailyarr[i]/dailyarr[i-1];
                 }
                 mean=mean/10;
-                console.log(mean);
+                // console.log(statedata);
                 res.render("index",{mean: mean,statedata: statedata, daily: JSON.stringify(daily),time: [updatetime,day,month[mnth]]});
             });
         });
@@ -138,7 +120,7 @@ app.get("/info",(req,res)=>{
 })
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 4001;
+  port = 4000;
 }    
 app.listen(port,()=>{
     console.log("Covid App Server Started!!!");

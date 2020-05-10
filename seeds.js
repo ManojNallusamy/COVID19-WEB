@@ -16,7 +16,8 @@ function loadData()
         else
         {
             var data = JSON.parse(body);
-            request("https://covid2019-api.herokuapp.com/v2/total",(error,response,body)=>{
+            // https://covid2019-api.herokuapp.com/v2/total
+            request("https://api.thevirustracker.com/free-api?global=stats",(error,response,body)=>{
                 if(error)
                 {
                     console.log("Unable to retrieve from global data.");
@@ -39,14 +40,14 @@ function loadData()
                         //     }); 
                         statewise.create(
                             {
-                                dailyrecovered: body["data"]['recovered'],
-                                dailydeaths:body["data"]['deaths'],
-                                dailytotal: body["data"]['confirmed'],
+                                dailyrecovered: body["results"][0]['recovered'],
+                                dailydeaths:body["results"][0]['total_new_deaths_today'],
+                                dailytotal: body["results"][0]['total_new_cases_today'],
                                 name: "Global",
-                                active: body["data"]['active'],
-                                recovered: body["data"]['recovered'],
-                                deaths: body["data"]['deaths'],
-                                total: body["data"]['confirmed']
+                                active: body["results"][0]['total_active_cases'],
+                                recovered: body["results"][0]['total_recovered'],
+                                deaths: body["results"][0]['total_deaths'],
+                                total: body["results"][0]['total_cases']
                             });
                         data["statewise"].forEach((state)=>{
                             statewise.create(

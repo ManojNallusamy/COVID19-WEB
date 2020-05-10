@@ -3,7 +3,7 @@
 <%  return b["total"]-a["total"]; %>
 <% }) %>
 <% function numberWithCommas(x) { %>
-<%  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %>
+<%  return Number(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); %>
 <% } %>
 <div class="ui container" >
     <div class="ui stackable grid">
@@ -35,7 +35,7 @@
                               <div class="header" style="color: rgb(204, 51, 0);">Deaths</div>
                               <div class="meta"><%= ((statedata[0]["deaths"]/statedata[0]["total"])*100).toPrecision(3) %>%</div>
                               <div class="description">
-                                  <strong class="count"><%= numberWithCommas(statedata[0]["deaths"]) %></strong> <!--(+<%= numberWithCommas(statedata[0]["dailydeaths"]) %>) -->
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["deaths"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailydeaths"]) %>)
                               </div>
                             </div>
                           </div>
@@ -43,7 +43,7 @@
                             <div class="content">
                               <div class="header">Total Cases</div>
                               <div class="description">
-                                  <strong class="count"><%= numberWithCommas(statedata[0]["total"]) %></strong> <!--(+<%= numberWithCommas(statedata[0]["dailytotal"]) %>)-->
+                                  <strong class="count"><%= numberWithCommas(statedata[0]["total"]) %></strong> (+<%= numberWithCommas(statedata[0]["dailytotal"]) %>)
                               </div>
                             </div>
                           </div>    
@@ -149,10 +149,10 @@
                         <th class="disptotal order">Cnfmd</th>
                         <th class="disptotal">Active</th>
                         <th class="disptotal">Rcvrd</th>
-                        <th class="disptotal">Deaths</th>
+                        <th class="disptotal">Death</th>
                         <th class="disp hide order">Confirmed</th>
                         <th class="disp hide">Recovered</th>
-                        <th class="disp hide">Deaths</th>
+                        <th class="disp hide">Death</th>
                     </tr>
                 </thead>
                 <tbody>
