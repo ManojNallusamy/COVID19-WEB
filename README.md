@@ -11,7 +11,7 @@ Visit here: [https://track-covid-19ind.herokuapp.com/](https://track-covid-19ind
         Back-end   - NodeJS / Express / Mongoose
 ## Screenshots
 ![Home Page](screnshots/page1.png)
-![Global Page](screnshots/page2.png){height=300px width=500px}
+![Global Page](screnshots/page2.png){height=200px width=300px}
 ![State Page](screnshots/page3.png)
 ![Info Page](screnshots/page4.png)
       
