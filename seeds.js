@@ -29,7 +29,7 @@ function loadData()
                         console.log("State db Cleared.");
                         statewise.create(
                             {
-                                dailyrecovered: body["results"][0]['recovered'],
+                                dailyrecovered: body["results"][0]['total_recovered'],
                                 dailydeaths:body["results"][0]['total_new_deaths_today'],
                                 dailytotal: body["results"][0]['total_new_cases_today'],
                                 name: "Global",
