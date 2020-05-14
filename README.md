@@ -11,11 +11,11 @@ Visit here: [https://track-covid-19ind.herokuapp.com/](https://track-covid-19ind
         Back-end   - NodeJS / Express / Mongoose
 ## Screenshots
 #### Home page sample
-![Home Page](screnshots/page1.png)
+![Home Page](screenshots/page1.png)
 #### Global page sample
-![Global Page](screnshots/page2.png){height=200px width=300px}
+![Global Page](screenshots/page2.png){height=200px width=300px}
 #### State page sample
-![State Page](screnshots/page3.png)
+![State Page](screenshots/page3.png)
 #### Info page
-![Info Page](screnshots/page4.png)
+![Info Page](screenshots/page4.png)
       

@@ -1,6 +1,10 @@
+
+//Loading effect
 $(window).on('load',function() {
     $("body").removeClass("preload");
   });
+
+//Table sort button  
 $(document).ready(function(){
     $('table').addClass('tablesorter');
     $('table').tablesorter({
@@ -13,23 +17,25 @@ $(document).ready(function(){
         widgets: ['zebra','columns']
     });
   });
-  document.querySelector("#option1").addEventListener("click",()=>{
-      $(".disptotal").removeClass("hide");
-      $(".disptotal").removeClass("hide");
-      $(".disp").addClass("hide");
-      $(".disp").addClass("hide");
-  })
-  document.querySelector("#option2").addEventListener("click",()=>{
-    $(".disp").removeClass("hide");
-    $(".disp").removeClass("hide");
-    $(".disptotal").addClass("hide");
-    $(".disptotal").addClass("hide");
-  })
-//   $('.total').remove();
-  var daily = JSON.parse(document.querySelector("#json").textContent);  
-  // daily.sort((a,b)=>{ 
-  //     return new Date(a["date"])- new Date(b["date"]); 
-  //    }) 
+
+//Switch between cumulative and daily cases  
+document.querySelector("#option1").addEventListener("click",()=>{
+    $(".disptotal").removeClass("hide");
+    $(".disptotal").removeClass("hide");
+    $(".disp").addClass("hide");
+    $(".disp").addClass("hide");
+})
+document.querySelector("#option2").addEventListener("click",()=>{
+  $(".disp").removeClass("hide");
+  $(".disp").removeClass("hide");
+  $(".disptotal").addClass("hide");
+  $(".disptotal").addClass("hide");
+})
+
+//daily data for charts
+var daily = JSON.parse(document.querySelector("#json").textContent); 
+
+//line chart function
 function drawChart(chrtTitle,chrtName,colValues) {
     // Define the chart to be drawn.
     var data = new google.visualization.DataTable();
@@ -77,68 +83,37 @@ function drawChart(chrtTitle,chrtName,colValues) {
     var chart = new google.charts.Line(document.getElementById(chrtName));
     chart.draw(data, options);
     }
-    google.charts.setOnLoadCallback(()=>{ drawChart('GROWTH - INDIA','chart1',['confirmed','recovered','deaths'])});
-    // google.charts.setOnLoadCallback(()=>{ drawChart('DAILY CASES - INDIA','chart2',['dailyconfirmed','dailyrecovered','dailydeaths'])});
 
+google.charts.setOnLoadCallback(()=>{ drawChart('GROWTH - INDIA','chart1',['confirmed','recovered','deaths'])});
 
-    google.charts.setOnLoadCallback(barChart);
-    function barChart() {
-        rows=[['', 'Death', 'Rcvrd', 'Cnfrmd']];
-        // var ctr=0;
-        // daily.forEach((day)=>{
-        //     if(day['date'] == "01 March ")
-        //         ctr=1;
-        //     if(ctr==0)
-        //     return;    
-        //     rows.push(["  ",day['dailydeaths'],day['dailyrecovered'],day['dailyconfirmed']]);
-        // })
-        for(i=daily.length-30;i<daily.length;i++)
-        {
-          rows.push(["  ",daily[i]['dailydeaths'],daily[i]['dailyrecovered'],daily[i]['dailyconfirmed']]);
-        }
-        var data = google.visualization.arrayToDataTable(rows);
+google.charts.setOnLoadCallback(barChart);
 
-        var options = {  
-          chart: {
-            title: 'DAILY TRENDS - INDIA',
-            subtitle: 'Last 30 days',
-          },
-          legend: { position: 'top', alignment: 'start' },
-        //   legend: { position: 'top', maxLines: 3 },
-        isStacked: true,
-          colors: [   
-            'red'
-            ],
-            
-        };
+//barchart function
+function barChart() {
+  rows=[['', 'Death', 'Rcvrd', 'Cnfrmd']];
+  for(i=daily.length-30;i<daily.length;i++)
+  {
+    rows.push(["  ",daily[i]['dailydeaths'],daily[i]['dailyrecovered'],daily[i]['dailyconfirmed']]);
+  }
+  var data = google.visualization.arrayToDataTable(rows);
 
-        var chart = new google.charts.Bar(document.getElementById('chart2'));
+  var options = {  
+    chart: {
+      title: 'DAILY TRENDS - INDIA',
+      subtitle: 'Last 30 days',
+    },
+    legend: { position: 'top', alignment: 'start' },
+  //   legend: { position: 'top', maxLines: 3 },
+  isStacked: true,
+    colors: [   
+      'red'
+      ],
+      
+  };
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
+  var chart = new google.charts.Bar(document.getElementById('chart2'));
 
-    //
-    // var isOutOfViewport = function (elem) {
+  chart.draw(data, google.charts.Bar.convertOptions(options));
+}
 
-        // Get element's bounding
-    //     var bounding = elem.getBoundingClientRect();
-    
-    //     // Check if it's out of the viewport on each side
-    //     var out = {};
-    //     out.top = bounding.top < 0;
-    //     out.left = bounding.left < 0;
-    //     out.bottom = bounding.bottom > (window.innerHeight || document.documentElement.clientHeight);
-    //     out.right = bounding.right > (window.innerWidth || document.documentElement.clientWidth);
-    //     out.any = out.top || out.left || out.bottom || out.right;
-    //     out.all = out.top && out.left && out.bottom && out.right;
-    
-    //     return out;
-    
-    // };
-    // var tbl = document.querySelector("table");
-    // if(isOutOfViewport(tbl).right)
-    // {
-    //     document.querySelector("#rvd").textContent = "Rcvrd";
-    // }
-
-        
+  

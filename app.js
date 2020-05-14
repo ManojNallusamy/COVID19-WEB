@@ -9,13 +9,13 @@ app.set("view engine","ejs");
 app.use(express.static("public"));
 
 //DB connect
-mongoose.connect("mongodb://localhost:27017/covid_app",{useNewUrlParser: true , useUnifiedTopology: true});
+// mongoose.connect("mongodb://localhost:27017/covid_app",{useNewUrlParser: true , useUnifiedTopology: true});
 // mongoose.connect("mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true , useUnifiedTopology: true});
-// uri = "mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net/test?retryWrites=true&w=majority";
-// mongoose
-//      .connect( uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-//      .then(() => console.log( 'Database Connected' ))
-//      .catch(err => console.log( err ));
+uri = "mongodb+srv://manoj:newpassword@covidcluster-gze5o.mongodb.net/test?retryWrites=true&w=majority";
+mongoose
+     .connect( uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+     .then(() => console.log( 'Database Connected' ))
+     .catch(err => console.log( err ));
 var statewise = require("./models/statewise");
 var dailydata = require("./models/dailydata");
 var global = require("./models/global");
@@ -51,7 +51,7 @@ app.get("/",(req,res)=>{
     {
         mean=0;
         dailyarr=[]
-        // console.log("hohoooo");
+        console.log("Index page served.");
         statewise.find({},(err,statedata)=>{
             dailydata.find({},(err,daily)=>{
                 st=statedata;
@@ -74,48 +74,23 @@ app.get("/",(req,res)=>{
     }
     if(st && dt)
     {
+        console.log("Index page served.");
         res.render("index",{mean: mean,statedata: st, daily: JSON.stringify(dt),time: [updatetime,day,month[mnth]]});
     }
-
-    ///////////
-    // var url ="https://api.covid19india.org/data.json";
-    // request(url, function (error, response, body) {
-    //     if(error)
-    //     {
-    //         console.log("Unable to retrieve data from india DB.");
-    //     }
-    //     else
-    //     {
-    //         var statedata = body;
-    //         request("https://bing.com/covid/data",(error,response,body)=>{
-    //             if(error)
-    //             {
-    //                 console.log("Unable to retrieve from bing.");
-    //             }
-    //             else
-    //             {
-    //                 console.log(body);
-    //                 // res.render("index",{statedata:statedata , global:JSON.parse(body) });
-    //             }
-    //         });
-    //     }
-    // });
-    ///////////
 });   
 
 app.get("/global",(req,res)=>{
-    // global.find({},(err,globaldata)=>{
-    //     res.render("global",{global: globaldata});  
-    // })
+    console.log("Global page served.");
     res.render("global");
 })
 
 
 app.get("/district",(req,res)=>{
+    console.log("State page served.")
     res.render("district",{data:JSON.parse(districtdata)});
-    // console.log(JSON.parse(districtdata));
 })
 app.get("/info",(req,res)=>{
+    console.log("Info page served")
     res.render("info");
 })
 let port = process.env.PORT;

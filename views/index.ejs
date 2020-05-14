@@ -96,15 +96,15 @@
                 <h2 style="margin: 1rem auto">PREDICTIONS</h2>
                 <div class="ui segment" style="width: 100%; margin: .25rem 1rem;">
                   <div class="ui small statistics" style="margin: 0 auto;">
-                    <div class="statistic" style="width: 100%;margin: 0 auto;">
+                    <div class="grey statistic" style="width: 100%;margin: 0 auto;">
                       <div class="value">
-                        <%= ((mean-1)*100).toFixed(2)%>
+                        <%= ((mean-1)*100).toFixed(2)%>%
                       </div>
                       <div class="label">
                         Growth Rate
                       </div>
                     </div>
-                    <div class="statistic" style="width: 100% ;margin: .25rem auto;">
+                    <div class="grey statistic" style="width: 100% ;margin: .25rem auto;">
                       <div class="value">
                         <%= numberWithCommas((statedata[1]["total"]*(mean-1)).toFixed(0)) %>
                       </div>
@@ -112,7 +112,7 @@
                         Expected New Cases(24 hrs)
                       </div>
                     </div>
-                    <div class="statistic" style="width: 100% ;margin: .25rem auto;">
+                    <div class="grey statistic" style="width: 100% ;margin: .25rem auto;">
                       <div class="value">
                         <%= numberWithCommas((statedata[1]["total"]*(Math.pow(mean,5))-statedata[1]["total"]).toFixed(0)) %>
                       </div>

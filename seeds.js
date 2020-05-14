@@ -11,7 +11,7 @@ function loadData()
     request(url, function (error, response, body) {
         if(error)
         {
-            console.log("Unable to retrieve data from india DB.");
+            console.log("Unable to retrieve India state data");
         }
         else
         {
@@ -20,24 +20,13 @@ function loadData()
             request("https://api.thevirustracker.com/free-api?global=stats",(error,response,body)=>{
                 if(error)
                 {
-                    console.log("Unable to retrieve from global data.");
+                    console.log("Unable to retrieve global data.");
                 }
                 else
                 {
                     var body = JSON.parse(body);
                     statewise.deleteMany({},(err)=>{
-                        console.log("DB1 Cleared.");
-                        // statewise.create(
-                        //     {
-                        //         dailyrecovered: body["totalRecoveredDelta"],
-                        //         dailydeaths:body["totalDeathsDelta"],
-                        //         dailytotal: body["totalConfirmedDelta"],
-                        //         name: "Global",
-                        //         active: body["totalConfirmed"]-body["totalRecovered"]-body["totalDeaths"],
-                        //         recovered: body["totalRecovered"],
-                        //         deaths: body["totalDeaths"],
-                        //         total: body["totalConfirmed"]
-                        //     }); 
+                        console.log("State db Cleared.");
                         statewise.create(
                             {
                                 dailyrecovered: body["results"][0]['recovered'],
@@ -62,7 +51,7 @@ function loadData()
                                     total: state["confirmed"]
                                 });
                         }) 
-                        console.log("DB1 Updated."); 
+                        console.log("State db Updated."); 
                     });
                 }
             });
@@ -72,7 +61,7 @@ function loadData()
     request("https://api.covid19india.org/data.json",(error,response,body)=>{
         if(error)
         {
-            console.log("Cannot  retrieve daily data!!!");
+            console.log("Unable to retrieve daily data.");
         }
         else
         {
@@ -91,7 +80,7 @@ function loadData()
                             confirmed: daily["totalconfirmed"]
                         });
                 });
-                console.log("DB2 updated!!!");
+                console.log("Daily data db Updated");
             });
         }
     });
