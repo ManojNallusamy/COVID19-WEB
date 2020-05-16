@@ -45,6 +45,14 @@ setTimeout(()=>{
     st=undefined;
     dt=undefined;
 },1000*60*5);
+setInterval(()=>{
+    updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+    updatetime = new Date(updatetime);
+    updatetime = updatetime.toLocaleTimeString();
+    loadstatewise();
+    st=undefined;
+    dt=undefined;
+},1000*60*60*2);
 var dailyarr=[],mean=0;
 app.get("/",(req,res)=>{
     if(!st || !dt)
@@ -54,6 +62,7 @@ app.get("/",(req,res)=>{
         console.log("Index page served.");
         statewise.find({},(err,statedata)=>{
             dailydata.find({},(err,daily)=>{
+                // console.log(statedata)
                 st=statedata;
                 daily.sort((a,b)=>{ 
                     return new Date(a["date"])- new Date(b["date"]); 
@@ -62,12 +71,12 @@ app.get("/",(req,res)=>{
                 daily.forEach((res)=>{
                     dailyarr.push(res['confirmed']);
                 })
-                for(i=dailyarr.length-10;i<dailyarr.length;i++)
+                first=dailyarr.length-10;
+                for(i=first;i<dailyarr.length;i++)
                 {
                     mean+=dailyarr[i]/dailyarr[i-1];
                 }
                 mean=mean/10;
-                // console.log(statedata);
                 res.render("index",{mean: mean,statedata: statedata, daily: JSON.stringify(daily),time: [updatetime,day,month[mnth]]});
             });
         });
