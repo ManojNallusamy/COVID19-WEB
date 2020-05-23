@@ -1,3 +1,5 @@
+
+// This feature has been implemented by am4core. I just forked it. 
 am4core.ready(function() {
   
     // Themes begin
