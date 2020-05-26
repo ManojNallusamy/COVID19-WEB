@@ -111,7 +111,9 @@ img{
 .ui.table:last-child{
     margin-bottom: 2rem;
 }
-
+/* table {
+    word-break: break-word;
+} */
 .hide{
     display: none;
   }

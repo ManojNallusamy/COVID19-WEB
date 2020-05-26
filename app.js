@@ -59,7 +59,6 @@ app.get("/",(req,res)=>{
     {
         mean=0;
         dailyarr=[]
-        console.log("Index page served.");
         statewise.find({},(err,statedata)=>{
             dailydata.find({},(err,daily)=>{
                 // console.log(statedata)
@@ -78,13 +77,14 @@ app.get("/",(req,res)=>{
                 }
                 mean=mean/10;
                 res.render("index",{mean: mean,statedata: statedata, daily: JSON.stringify(daily),time: [updatetime,day,month[mnth]]});
+                console.log("Index page served.");
             });
         });
     }
     if(st && dt)
     {
-        console.log("Index page served.");
         res.render("index",{mean: mean,statedata: st, daily: JSON.stringify(dt),time: [updatetime,day,month[mnth]]});
+        console.log("Index page served.");
     }
 });   
 
