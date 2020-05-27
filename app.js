@@ -35,7 +35,7 @@ day=updatetime.getDate();
 mnth=updatetime.getMonth();
 var month=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 updatetime = updatetime.toLocaleTimeString();
-// loadstatewise();
+loadstatewise();
 var st,dt;
 setTimeout(()=>{
     updatetime =  new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
