@@ -13,7 +13,7 @@ Visit here: [https://track-covid-19ind.herokuapp.com/](https://track-covid-19ind
 #### Home page sample
 ![Home Page](screenshots/page1.png)
 #### Global page sample
-![Global Page](screenshots/page2.png){height=200px width=300px}
+![Global Page](screenshots/page2.png)
 #### State page sample
 ![State Page](screenshots/page3.png)
 #### Info page
