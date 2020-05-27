@@ -18,7 +18,8 @@ function loadData()
             var data = JSON.parse(body);
             // https://covid2019-api.herokuapp.com/v2/total
             // https://api.thevirustracker.com/free-api?global=stats
-            request("https://api.covid19api.com/summary",(error,response,body)=>{
+            // https://api.covid19api.com/summary
+            request("https://api.thevirustracker.com/free-api?global=stats",(error,response,body)=>{
                 if(error)
                 {
                     console.log("Unable to retrieve global data.");
@@ -30,14 +31,22 @@ function loadData()
                         console.log("State db Cleared.");
                         statewise.create(
                             {
-                                dailyrecovered: body["Global"]['NewRecovered'],
-                                dailydeaths:body["Global"]['NewDeaths'],
-                                dailytotal: body["Global"]['NewConfirmed'],
+                                // dailyrecovered: body["Global"]['NewRecovered'],
+                                // dailydeaths:body["Global"]['NewDeaths'],
+                                // dailytotal: body["Global"]['NewConfirmed'],
+                                // name: "Global",
+                                // active: body["Global"]['TotalConfirmed']-body["Global"]['TotalRecovered'],
+                                // recovered: body["Global"]['TotalRecovered'],
+                                // deaths: body["Global"]['TotalDeaths'],
+                                // total: body["Global"]['TotalConfirmed']
+                                dailyrecovered: body["results"][0]['total_recovered'],
+                                dailydeaths:body["results"][0]['total_new_deaths_today'],
+                                dailytotal: body["results"][0]['total_new_cases_today'],
                                 name: "Global",
-                                active: body["Global"]['TotalConfirmed']-body["Global"]['TotalRecovered'],
-                                recovered: body["Global"]['TotalRecovered'],
-                                deaths: body["Global"]['TotalDeaths'],
-                                total: body["Global"]['TotalConfirmed']
+                                active: body["results"][0]['total_active_cases'],
+                                recovered: body["results"][0]['total_recovered'],
+                                deaths: body["results"][0]['total_deaths'],
+                                total: body["results"][0]['total_cases']
                             });
                         data["statewise"].forEach((state)=>{
                             statewise.create(

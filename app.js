@@ -76,6 +76,7 @@ app.get("/",(req,res)=>{
                     mean+=dailyarr[i]/dailyarr[i-1];
                 }
                 mean=mean/10;
+                console.log(mean)
                 res.render("index",{mean: mean,statedata: statedata, daily: JSON.stringify(daily),time: [updatetime,day,month[mnth]]});
                 console.log("Index page served.");
             });
